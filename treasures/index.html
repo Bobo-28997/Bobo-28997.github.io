@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>洋葱宝藏 · 洋葱的小站</title>
+  <meta name="description" content="洋葱的宝藏收藏。">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-page="treasures">
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="站内导航">
+      <a class="brand" href="../" aria-label="回到首页">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M32 12 C20 24 12 34 12 44 C12 54 21 59 32 59 C43 59 52 54 52 44 C52 34 44 24 32 12 Z" stroke-width="2.6"/>
+          <path d="M29 11 C27.5 7.5 28 4.5 30 2.5" stroke="#7CA35B" stroke-width="2.4"/>
+          <path d="M32.5 11 C32.5 7 33.5 4.5 35.5 2.5" stroke="#7CA35B" stroke-width="2.4"/>
+          <path d="M35 11.5 C37 8.5 39.5 7 42.5 6.5" stroke="#7CA35B" stroke-width="2.4"/>
+          <path d="M26 58.5 L25 62.5 M32 59 L32 63 M38 58.5 L39 62.5" stroke-width="2.2"/>
+          <path d="M22 22 C18.5 28 17.5 34 18.5 41" stroke-width="1.8" opacity="0.45"/>
+          <path d="M42 22 C45.5 28 46.5 34 45.5 41" stroke-width="1.8" opacity="0.45"/>
+        </svg>
+        洋葱波波的小站
+      </a>
+      <a class="site-nav__link" data-nav="home" href="../">首页</a>
+      <a class="site-nav__link" data-nav="works" href="../works/">工作作品</a>
+      <a class="site-nav__link" data-nav="plugins" href="../plugins/">个人插件</a>
+      <a class="site-nav__link" data-nav="daily" href="../daily/">日常娱乐</a>
+      <a class="site-nav__link" data-nav="treasures" href="../treasures/">洋葱宝藏</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="section" aria-labelledby="page-title">
+      <h1 class="section__title" id="page-title">洋葱宝藏</h1>
+      <p class="section__lead">葱国的内帑：展示身为历史爱好者收集的世界藏品，全部都是合法拍卖/购入获得的。目标是成为乾隆级别的假文物收藏爱好者。</p>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5" stroke-width="2"/>
+            <path d="M15.5 15.5 L21 21" stroke-width="2"/>
+          </svg>
+          <label for="search-input" class="visually-hidden" hidden>搜索宝藏收藏</label>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要、正文或标签…" autocomplete="off">
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite">加载中…</p>
+      </div>
+
+      <ul class="card-list card-list--grid" id="card-list"></ul>
+      <div id="empty-state"></div>
+      <noscript>
+        <p class="notice">这个板块需要启用 JavaScript 才能显示内容列表。</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M32 12 C20 24 12 34 12 44 C12 54 21 59 32 59 C43 59 52 54 52 44 C52 34 44 24 32 12 Z" stroke-width="3"/>
+          <path d="M30 10 C29 6.5 29.5 4 31.5 2" stroke="#7CA35B" stroke-width="3"/>
+          <path d="M34 11 C35.5 8 37.5 6.5 40 6" stroke="#7CA35B" stroke-width="3"/>
+        </svg>
+        洋葱波波的小站 · 零框架静态页面
+      </p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/data-treasures.js" defer></script>
+  <script src="../assets/js/onions.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

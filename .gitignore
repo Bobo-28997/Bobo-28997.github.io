@@ -1,0 +1,7 @@
+# 本地工具产物
+.playwright-mcp/
+.claude/settings.local.json
+
+# 系统杂项
+.DS_Store
+Thumbs.db

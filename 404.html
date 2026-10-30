@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>页面走丢了 · 洋葱的小站</title>
+  <!--
+    404 处理策略：本页加载后自动向上一级目录回退（../）。
+    若上一级仍是无效路径，服务器会再次返回本页，于是继续回退，
+    直到命中站点根目录（本地或 GitHub Pages 项目站点的 /repo/ 均适用）。
+    使用相对路径，兼容部署在子路径的项目站点。
+  -->
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FAF6EF;
+      color: #3A3143;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      text-align: center;
+    }
+    .box { padding: 40px 20px; }
+    svg { width: 110px; height: 110px; color: #9B7EBD; }
+    h1 { font-size: 24px; margin: 14px 0 8px; }
+    p { color: #6f6480; margin: 0 0 20px; }
+    a {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #9B7EBD;
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M32 12 C20 24 12 34 12 44 C12 54 21 59 32 59 C43 59 52 54 52 44 C52 34 44 24 32 12 Z" stroke-width="2.4"/>
+      <path d="M30 10 C29 6.5 29.5 4 31.5 2" stroke="#7CA35B" stroke-width="2.2"/>
+      <path d="M34 11 C35.5 8 37.5 6.5 40 6" stroke="#7CA35B" stroke-width="2.2"/>
+      <path d="M26 58.5 L25 62.5 M32 59 L32 63 M38 58.5 L39 62.5" stroke-width="2"/>
+      <circle cx="26" cy="38" r="1.8" fill="currentColor" stroke="none"/>
+      <circle cx="38" cy="38" r="1.8" fill="currentColor" stroke="none"/>
+      <path d="M28 47 C30 44.5 34 44.5 36 47" stroke-width="2"/>
+    </svg>
+    <h1>洋葱把这页挖丢了</h1>
+    <p>你访问的地址不存在，正在带你返回首页…</p>
+    <noscript><a href="../">手动返回上一级</a></noscript>
+  </main>
+
+  <script>
+    (function () {
+      // 防御异常配置下的循环：最多连续回退 6 次
+      try {
+        var n = Number(sessionStorage.getItem("onion404") || "0");
+        if (n > 6) {
+          document.querySelector("p").textContent =
+            "自动跳转未成功，请从地址栏去掉路径后访问站点首页。";
+          var a = document.createElement("a");
+          a.href = "../";
+          a.textContent = "再试一次";
+          document.querySelector(".box").appendChild(a);
+          return;
+        }
+        sessionStorage.setItem("onion404", String(n + 1));
+      } catch (e) { /* sessionStorage 不可用时直接跳 */ }
+      window.location.replace("../");
+    })();
+  </script>
+</body>
+</html>

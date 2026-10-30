@@ -1,0 +1,645 @@
+/* ============================================================
+   洋葱主题个人展示站 · 全站样式
+   设计 token 见 :root，全部组件样式与响应式均在下方
+   ============================================================ */
+
+:root {
+  /* 色板 */
+  --color-bg: #FAF6EF;          /* 米白底 */
+  --color-primary: #9B7EBD;     /* 洋葱皮紫 */
+  --color-primary-deep: #7d5fa3;
+  --color-accent: #7CA35B;      /* 葱苗绿 */
+  --color-text: #3A3143;        /* 墨紫灰正文 */
+  --color-text-soft: #6f6480;
+  --color-line: #E9E1D5;        /* 细线 */
+  --color-card: #fffdf9;
+
+  /* 形状与投影 */
+  --radius-card: 14px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 2px 10px rgba(58, 49, 67, 0.06);
+  --shadow-lift: 0 6px 18px rgba(58, 49, 67, 0.10);
+
+  /* 版式 */
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    sans-serif;
+  --content-width: 960px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-stack);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--color-primary-deep); }
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================================
+   导航（sticky + 当前项高亮）
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250, 246, 239, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 700;
+  margin-right: 12px;
+}
+
+.brand svg { width: 28px; height: 28px; color: var(--color-primary); }
+
+.site-nav__link {
+  text-decoration: none;
+  color: var(--color-text-soft);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-nav__link:hover {
+  color: var(--color-primary-deep);
+  background: rgba(155, 126, 189, 0.12);
+}
+
+.site-nav__link.is-active {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+/* ============================================================
+   Hero（首页）
+   ============================================================ */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 56px 0 32px;
+  flex-wrap: wrap;
+}
+
+.hero__art svg {
+  width: 140px;
+  height: 140px;
+  color: var(--color-primary);
+}
+
+.hero__text { flex: 1 1 320px; }
+
+.hero__eyebrow {
+  color: var(--color-accent);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  margin: 0 0 8px;
+}
+
+.hero__title {
+  margin: 0 0 12px;
+  font-size: 34px;
+  line-height: 1.25;
+}
+
+.hero__desc {
+  margin: 0;
+  color: var(--color-text-soft);
+  max-width: 560px;
+}
+
+/* 头像占位 */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px dashed var(--color-primary);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 照片加载成功：虚线占位框换成实线圆框 */
+.avatar--photo { border-style: solid; }
+
+/* 照片缺失时的洋葱线稿回落占位 */
+.avatar svg { width: 84px; height: 84px; opacity: 0.55; }
+
+/* ============================================================
+   区块与分隔线
+   ============================================================ */
+
+.section { padding: 32px 0; }
+
+.section__title {
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.section__lead {
+  color: var(--color-text-soft);
+  margin: 0 0 20px;
+  font-size: 15px;
+}
+
+.divider {
+  display: block;
+  margin: 8px auto;
+  width: 240px;
+  height: 24px;
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   技能 pills
+   ============================================================ */
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary-deep);
+  background: rgba(155, 126, 189, 0.08);
+  font-size: 14px;
+}
+
+.pill--green {
+  border-color: var(--color-accent);
+  color: #5c7a42;
+  background: rgba(124, 163, 91, 0.10);
+}
+
+/* 可点击的 tag pill（列表页过滤） */
+.pill--button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.pill--button:hover {
+  background: rgba(155, 126, 189, 0.22);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   时间线（首页经历）
+   ============================================================ */
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 22px;
+  border-left: 2px solid var(--color-line);
+}
+
+.timeline__item {
+  position: relative;
+  padding: 0 0 26px 18px;
+}
+
+.timeline__item:last-child { padding-bottom: 4px; }
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 7px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 3px solid var(--color-primary);
+}
+
+.timeline__when {
+  color: var(--color-accent);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.timeline__what {
+  margin: 2px 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.timeline__detail {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 15px;
+}
+
+/* ============================================================
+   按钮
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover { background: var(--color-primary-deep); box-shadow: var(--shadow-lift); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-primary-deep);
+}
+
+.btn--ghost:hover { background: rgba(155, 126, 189, 0.12); box-shadow: none; }
+
+/* ============================================================
+   联系方式（首页）：邮箱 / GitHub 卡片
+   ============================================================ */
+
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 0;
+  margin: 24px 0 0;
+  list-style: none;
+}
+
+.contact-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 18px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-primary);
+}
+
+.contact-card__icon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  color: var(--color-primary);
+}
+
+.contact-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-card__label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--color-text-soft);
+}
+
+.contact-card__value {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 绿色变体：呼应葱苗绿 accent token */
+.contact-card--accent:hover { border-color: var(--color-accent); }
+.contact-card--accent .contact-card__icon { color: var(--color-accent); }
+
+/* ============================================================
+   列表页：搜索框 + 计数
+   ============================================================ */
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 24px 0 8px;
+}
+
+.search-box {
+  position: relative;
+  flex: 1 1 260px;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-soft);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line);
+  background: var(--color-card);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(155, 126, 189, 0.18);
+}
+
+.result-count {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-soft);
+}
+
+/* ============================================================
+   卡片流（works / daily）与网格（treasures）
+   ============================================================ */
+
+.card-list {
+  display: grid;
+  gap: 18px;
+  margin: 20px 0 48px;
+  padding: 0;
+  list-style: none;
+}
+
+.card-list--grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+
+.card__media {
+  aspect-ratio: 16 / 9;
+  background: rgba(155, 126, 189, 0.07);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.card__media svg { width: 72px; height: 72px; opacity: 0.5; }
+
+.card__body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text-soft);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.card__title a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.card__title a:hover { color: var(--color-primary-deep); }
+
+.card__summary {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--color-text-soft);
+  flex: 1;
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.card__tags .pill { font-size: 12.5px; padding: 3px 10px; }
+
+.card__link {
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card__link:hover { text-decoration: underline; }
+
+/* 文章式卡片（works / daily）：标题置顶 → 左图右信息 → 正文全文 */
+.card--article { gap: 14px; padding: 18px 20px 20px; }
+
+.card__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card__header .card__title { font-size: 19px; }
+
+.card__header .card__meta { margin-left: auto; flex-shrink: 0; }
+
+.card__main {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.card--article .card__media {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card--article .card__media svg { width: 48px; height: 48px; }
+
+.card__side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   空状态（洋葱）
+   ============================================================ */
+
+.empty {
+  text-align: center;
+  padding: 48px 20px 64px;
+  color: var(--color-text-soft);
+}
+
+.empty svg {
+  width: 110px;
+  height: 110px;
+  color: var(--color-primary);
+  margin: 0 auto 14px;
+}
+
+.empty__title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: var(--color-text);
+}
+
+.empty p { margin: 0; font-size: 14.5px; }
+
+/* ============================================================
+   数据缺失提示 & 页脚
+   ============================================================ */
+
+.notice {
+  margin: 24px 0 48px;
+  padding: 16px 20px;
+  border: 1px dashed var(--color-primary);
+  border-radius: var(--radius-card);
+  color: var(--color-text-soft);
+  background: rgba(155, 126, 189, 0.06);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-line);
+  padding: 28px 0 40px;
+  text-align: center;
+  color: var(--color-text-soft);
+  font-size: 14px;
+}
+
+.site-footer svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary);
+  vertical-align: -5px;
+  margin-right: 4px;
+}
+
+/* ============================================================
+   响应式（单断点）
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .hero { padding: 32px 0 20px; gap: 20px; text-align: center; }
+  .hero { flex-direction: column; }
+  .hero__art svg { width: 104px; height: 104px; }
+  .hero__desc { margin: 0 auto; }
+  .hero__text { display: flex; flex-direction: column; align-items: center; }
+
+  .hero__title { font-size: 27px; }
+
+  .site-nav { padding: 8px 0; }
+  .site-nav__link { padding: 5px 9px; font-size: 14px; }
+
+  .section { padding: 24px 0; }
+
+  .card-list--grid { grid-template-columns: 1fr; }
+
+  /* 文章式卡片：窄屏时图在上、信息在下 */
+  .card__main { grid-template-columns: 1fr; gap: 12px; }
+  .card--article .card__media { aspect-ratio: 16 / 9; }
+  .card__header .card__meta { margin-left: 0; }
+
+  .toolbar { flex-direction: column; align-items: stretch; }
+  /* column 方向下重置 flex 尺寸，避免 search-box 被拉高 260px */
+  .search-box { flex: none; width: 100%; }
+  .result-count { text-align: center; }
+}
