@@ -1,6 +1,6 @@
 /* ============================================================
  * main.js — 全站行为
- * 首页（data-page="home"）：只做导航高亮。
+ * 首页（data-page="home"）：只做导航高亮（全站通用：高亮 + 移动端汉堡菜单）。
  * 列表页（works / plugins / daily / treasures）：渲染卡片、date 倒序、
  * 前端搜索（防抖 200ms）、计数播报、空状态、tag 点击过滤。
  *
@@ -22,6 +22,42 @@
     if (!page) return;
     var link = document.querySelector('.site-nav__link[data-nav="' + page + '"]');
     if (link) link.classList.add("is-active");
+  }
+
+  /* ----------------------------------------------------------
+   * 移动端汉堡菜单（按钮仅 ≤640px 显示，桌面端无影响）
+   * -------------------------------------------------------- */
+  function initMobileMenu() {
+    var header = document.querySelector(".site-header");
+    var toggle = document.querySelector(".nav-toggle");
+    if (!header || !toggle) return;
+
+    function setOpen(open) {
+      header.classList.toggle("menu-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    toggle.addEventListener("click", function () {
+      setOpen(!header.classList.contains("menu-open"));
+    });
+    // 点击面板外收起
+    document.addEventListener("click", function (e) {
+      if (header.classList.contains("menu-open") && !header.contains(e.target)) {
+        setOpen(false);
+      }
+    });
+    // Esc 收起并把焦点还给按钮
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && header.classList.contains("menu-open")) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    // 点了菜单里的链接就收起（跳转前双保险）
+    var links = header.querySelectorAll(".site-nav__link");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function () { setOpen(false); });
+    }
   }
 
   /* ----------------------------------------------------------
@@ -50,6 +86,7 @@
    * 首页：只做导航高亮
    * -------------------------------------------------------- */
   highlightNav();
+  initMobileMenu();
 
   /* ----------------------------------------------------------
    * 首页头像：照片加载成功变实线圆框；缺失/破图换洋葱占位

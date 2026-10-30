@@ -103,6 +103,13 @@ a { color: var(--color-primary-deep); }
   background: var(--color-primary);
 }
 
+/* 链接包装层：桌面端布局上完全透明（参与 .site-nav 的 flex 布局），
+   移动端（见响应式区块）变为汉堡菜单下拉面板 */
+.site-nav__links { display: contents; }
+
+/* 汉堡按钮：仅移动端显示（见响应式区块） */
+.nav-toggle { display: none; }
+
 /* ============================================================
    Hero（首页）
    ============================================================ */
@@ -626,8 +633,51 @@ a { color: var(--color-primary-deep); }
 
   .hero__title { font-size: 27px; }
 
+  /* 导航：单行（品牌 + 汉堡按钮），链接收进下拉面板，杜绝自由断行 */
   .site-nav { padding: 8px 0; }
-  .site-nav__link { padding: 5px 9px; font-size: 14px; }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;               /* 推到行尾 */
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: var(--color-card);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-toggle:hover { border-color: var(--color-primary); color: var(--color-primary-deep); }
+  .nav-toggle svg { width: 20px; height: 20px; }
+  .nav-toggle .icon-close { display: none; }
+  .menu-open .nav-toggle .icon-open { display: none; }
+  .menu-open .nav-toggle .icon-close { display: block; }
+
+  /* 下拉面板：浮在 sticky 头部下方，不推挤正文 */
+  .site-nav__links {
+    display: none;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: calc(100% + 8px);
+    z-index: 30;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    background: var(--color-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lift);
+  }
+  .menu-open .site-nav__links { display: flex; }
+  .site-nav__link {
+    display: block;
+    padding: 11px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
 
   .section { padding: 24px 0; }
 
